@@ -4,29 +4,32 @@ import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
+import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
 
 export default function Contact() {
 return(
 <>
-
 <Container>
 
-<Row xs={1} md={3} className="justify-content-md-center" >
+<Row xs={1} md={3} className="flex justify-content-md-center" >
 <Form>
     <Heading title="Contact" /> 
   <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
+     <FloatingLabel controlId="floatingInput" label="Email" className="mb-3">
+    <Form.Control type="email" placeholder="Email" />
+    </FloatingLabel>
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Label>text</Form.Label>
+      <FloatingLabel controlId="floatingInput" label="text" className="mb-3">
     <Form.Control type="text" placeholder="text" />
+    </FloatingLabel>
   </Form.Group>
 
  <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Label>text</Form.Label>
+<FloatingLabel controlId="floatingInput" label="text" className="mb-3">
     <Form.Control type="text" placeholder="text" />
+    </FloatingLabel>
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
