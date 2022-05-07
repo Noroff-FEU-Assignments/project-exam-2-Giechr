@@ -5,13 +5,14 @@ import logo from "../../assets/img/logo.png"
 
 export default function Footer() {
   return (
- <Card className="bg-light text-dark text-center">
+ <Card className=" text-dark text-center footer">
 
 
     <Row>
-  <Col xs={6} md={4} > <Card.Img variant="top" 
+  <Col xs={6} md={4 } > 
+  <Card.Img variant="top" 
       src={logo} 
-        height="100"
+        height="90"
         alt="Holidaze logo"
         className="img-fluid"/>
     </Col>

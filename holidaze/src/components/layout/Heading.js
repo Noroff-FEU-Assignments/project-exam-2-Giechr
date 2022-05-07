@@ -1,3 +1,12 @@
-export default function Heading({ title }) {
- return <h2>{title}</h2>;
+import PropTypes from "prop-types";
+
+function Heading({ content }) {
+	return <h1>{content}</h1>;
 }
+
+Heading.propTypes = {
+	content: PropTypes.string.isRequired,
+
+};
+
+export default Heading;
