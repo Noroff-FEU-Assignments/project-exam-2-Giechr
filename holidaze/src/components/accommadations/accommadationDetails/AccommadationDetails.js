@@ -9,6 +9,7 @@ import OffcanvasContact from "../../layout/BookingModal";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from "../../../constants/api";
 
 
 export default function Details() {
@@ -17,12 +18,14 @@ export default function Details() {
   const [error, setError] = useState(null);
 
   let { id } = useParams();
+  const url =
+    BASE_URL + `/api/accommadations/${id}?populate=*`;
 
   useEffect(function () {
     async function getAccommodations() {
       try {
         const response = await axios.get(
-          `http://localhost:1337/api/accommadations/${id}?populate=*`
+       url
         );
         console.log("response", response.data.data);
         setAccommodations(response.data.data);
@@ -56,7 +59,7 @@ export default function Details() {
             <Card.Img
               variant="top"
               src={
-                "http://localhost:1337" +
+                BASE_URL +
                 accommodations.attributes.img.data.attributes.url
               }
             />

@@ -12,6 +12,10 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import Heading from "../layout/Heading";
 import Ingress from "../layout/Ingress";
+import { BASE_URL } from "../../constants/api";
+
+
+const url = BASE_URL + "/api/auth/local";
 
 export default function LoginForm() {
   const [, setSubmitting] = useState(false);
@@ -31,7 +35,7 @@ export default function LoginForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:1337/api/auth/local",
+        url,
 
         {
           identifier: data.identifier,

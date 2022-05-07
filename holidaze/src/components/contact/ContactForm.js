@@ -5,6 +5,9 @@ import { contactSchema } from "../validations/ContactValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormError from "../common/FormError";
 import axios from "axios";
+import { BASE_URL } from "../../constants/api";
+
+const url = BASE_URL + "/api/messages";
 
 export default function AddPost() {
   const [submitting, setSubmitting] = useState(false);
@@ -20,9 +23,10 @@ export default function AddPost() {
 
     console.log("inSubmit data", data);
     try {
-      const response = await axios.post("http://localhost:1337/api/messages", {
+      const response = await axios.post(url, {
         data: {
           name: data.name,
+          email: data.email,
           subject: data.subject,
           description: data.description,
         },

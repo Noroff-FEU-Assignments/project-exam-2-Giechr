@@ -4,6 +4,7 @@ import Accommadationslist from "./accomadationslist/AccommadationsList"
 import { Container, Row } from "react-bootstrap";
 import Ingress from "../layout/Ingress";
 
+
 export default function Accommadations() {
   return (
     <>

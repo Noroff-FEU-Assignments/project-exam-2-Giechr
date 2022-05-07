@@ -1,5 +1,5 @@
 import BackButton from "../../../layout/BackButton";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,7 +10,8 @@ import { useHistory } from "react-router-dom";
 import { BookingSchema } from "../../../validations/BookingValidation";
 import Ingress from "../../../layout/Ingress";
 import { Row, Container } from "react-bootstrap";
-
+import { BASE_URL } from "../../../../constants/api";
+import AuthContext from "../../../../context/AuthContext";
 
 export default function EditBooking() {
   const [getresponse, setGetresponse] = useState(null);
@@ -20,19 +21,27 @@ export default function EditBooking() {
   const [error, setError] = useState(null);
 
   const history = useHistory();
+  const [auth] = useContext(AuthContext);
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(BookingSchema),
   });
 
   let { id } = useParams();
+  const url = BASE_URL + `/api/bookings/${id}`;
 
   useEffect(
     function () {
       async function get() {
         try {
           const response = await axios.get(
-            `http://localhost:1337/api/bookings/${id}`
+            url,
+
+            {
+              headers: {
+                Authorization: `Bearer ${auth}`,
+              },
+            }
           );
           console.log("response", response.data.data);
           setGetresponse(response.data.data);
@@ -59,7 +68,7 @@ export default function EditBooking() {
 
     try {
       const response = await axios.put(
-        `http://localhost:1337/api/bookings/${id}`,
+        url,
         {
           data: {
             name: data.name,
@@ -68,6 +77,11 @@ export default function EditBooking() {
             startdate: data.startdate,
             enddate: data.enddate,
             text: data.text,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${auth}`,
           },
         }
       );
@@ -83,7 +97,11 @@ export default function EditBooking() {
 
   async function handleDelete() {
     try {
-      await axios.delete(`http://localhost:1337/api/bookings/${id}`);
+      await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+        },
+      });
       history.goBack();
     } catch (error) {
       setError(error);

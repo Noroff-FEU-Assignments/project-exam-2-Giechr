@@ -1,6 +1,5 @@
 import Heading from "../layout/Heading";
 import Ingress from "../layout/Ingress";
-
 import { Container } from "react-bootstrap";
 import { ListGroup } from "react-bootstrap";
 import { Row } from "react-bootstrap";

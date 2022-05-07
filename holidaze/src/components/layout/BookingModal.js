@@ -1,6 +1,5 @@
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Button from "react-bootstrap/esm/Button";
-
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -8,14 +7,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormError from "../common/FormError";
 import { BookingSchema } from "../validations/BookingValidation";
-import { useParams } from "react-router-dom";
+import { BASE_URL } from "../../constants/api";
+
+const url = BASE_URL + `/api/bookings`;
 
 export default function OffcanvasContact() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
   const history = useHistory();
-
-  let { id } = useParams();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -32,7 +31,7 @@ export default function OffcanvasContact() {
     console.log("inSubmit data", data);
     try {
       const response = await axios.post(
-        `http://localhost:1337/api/bookings${id}?populate=*`,
+        url,
         {
           data: {
             name: data.name,

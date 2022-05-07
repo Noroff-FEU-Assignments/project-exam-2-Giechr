@@ -1,5 +1,5 @@
 import BackButton from "../../../layout/BackButton";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { contactSchema } from "../../../validations/ContactValidation";
@@ -10,9 +10,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Row, Container } from "react-bootstrap";
 import Ingress from "../../../layout/Ingress";
-
-
-
+import { BASE_URL } from "../../../../constants/api";
+import AuthContext from "../../../../context/AuthContext";
 
 export default function EditMessage() {
   const [getresponse, setGetresponse] = useState(null);
@@ -21,20 +20,28 @@ export default function EditMessage() {
   const [updatingPut, setUpdatingPut] = useState(false);
   const [error, setError] = useState(null);
 
-  	const history = useHistory();
+  const history = useHistory();
+  const [auth] = useContext(AuthContext);
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(contactSchema),
   });
 
   let { id } = useParams();
+  const url = BASE_URL + `/api/messages/${id}`;
 
   useEffect(
     function () {
       async function get() {
         try {
           const response = await axios.get(
-            `http://localhost:1337/api/messages/${id}`
+            url,
+
+            {
+              headers: {
+                Authorization: `Bearer ${auth}`,
+              },
+            }
           );
           console.log("response", response.data.data);
           setGetresponse(response.data.data);
@@ -61,13 +68,18 @@ export default function EditMessage() {
 
     try {
       const response = await axios.put(
-        `http://localhost:1337/api/messages/${id}`,
+        url,
         {
           data: {
             name: data.name,
             subject: data.subject,
             description: data.description,
-            email: data.email
+            email: data.email,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${auth}`,
           },
         }
       );
@@ -85,19 +97,17 @@ export default function EditMessage() {
 
   if (error) return <div>Error loading post</div>;
 
-
-
-	async function handleDelete() {
-
-
-    
-      try {
-        await axios.delete(`http://localhost:1337/api/messages/${id}`);
-        history.goBack();
-      } catch (error) {
-        setError(error);
-      }
-    
+  async function handleDelete() {
+    try {
+      await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+        },
+      });
+      history.goBack();
+    } catch (error) {
+      setError(error);
+    }
   }
 
   return (
@@ -128,7 +138,7 @@ export default function EditMessage() {
               </div>
               <div>
                 <input
-                  name="name"
+                  name="email"
                   defaultValue={getresponse.attributes.email}
                   placeholder="email"
                   type="email"

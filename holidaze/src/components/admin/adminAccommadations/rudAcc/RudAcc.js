@@ -1,5 +1,5 @@
 import BackButton from "../../../layout/BackButton";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { accommondationSchema } from "../../../validations/AccomodationValidation";
@@ -10,8 +10,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import {Row, Container} from "react-bootstrap"
 import Ingress from "../../../layout/Ingress";
-
-
+import { BASE_URL } from "../../../../constants/api";
+import AuthContext from "../../../../context/AuthContext";
 
 export default function EditAcc() {
   const [getresponse, setResponse] = useState(null);
@@ -27,13 +27,21 @@ export default function EditAcc() {
   });
 
   let { id } = useParams();
+  const url = BASE_URL + `/api/accommadations/${id}?populate=*`;
+  const [auth] = useContext(AuthContext);
 
   useEffect(
     function () {
       async function get() {
         try {
           const response = await axios.get(
-            `http://localhost:1337/api/accommadations/${id}?populate=*`
+            url,
+
+            {
+              headers: {
+                Authorization: `Bearer ${auth}`,
+              },
+            }
           );
           console.log("response", response.data.data);
           setResponse(response.data.data);
@@ -60,7 +68,7 @@ export default function EditAcc() {
 
     try {
       const response = await axios.put(
-        `http://localhost:1337/api/accommadations/${id}?populate=*`,
+        url,
         {
           data: {
             name: data.name,
@@ -70,6 +78,11 @@ export default function EditAcc() {
             rating: data.rating,
             wifi: data.wifi,
             text: data.text,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${auth}`,
           },
         }
       );
@@ -89,9 +102,11 @@ export default function EditAcc() {
 
   async function handleDelete() {
     try {
-      await axios.delete(
-        `http://localhost:1337/api/accommadations/${id}?populate=*`
-      );
+      await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+        },
+      });
       history.goBack();
     } catch (error) {
       setError(error);
@@ -110,21 +125,19 @@ export default function EditAcc() {
         </Row>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          {updated && (
-            <div>Accommodation was updated</div>
-          )}
+          {updated && <div>Accommodation was updated</div>}
 
           {error && <FormError>{error}</FormError>}
 
           <fieldset disabled={updatingPut}>
             <Row className="justify-content-md-center text-center">
               <div>
-
                 <img
                   alt="img"
+                  width="300"
+                  height="300"
                   src={
-                    "http://localhost:1337" +
-                    getresponse.attributes.img.data.attributes.url
+                    BASE_URL + getresponse.attributes.img.data.attributes.url
                   }
                 />
               </div>

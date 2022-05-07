@@ -1,5 +1,5 @@
 import BackButton from "../../../layout/BackButton";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { accommondationSchema } from "../../../validations/AccomodationValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,13 +8,18 @@ import Heading from "../../../layout/Heading";
 import axios from "axios";
 import { Row, Container } from "react-bootstrap";
 import Ingress from "../../../layout/Ingress";
+import { BASE_URL } from "../../../../constants/api";
+import AuthContext from "../../../../context/AuthContext";
 
-
+const url = BASE_URL + `/api/accommadations/?populate=*`;
 
 export default function CreateAcc() {
   const [updated, setUpdated] = useState(false);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState(null);
+
+  const [auth] = useContext(AuthContext);
+
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(accommondationSchema),
   });
@@ -24,10 +29,11 @@ export default function CreateAcc() {
     setError(null);
     setUpdated(false);
     console.log(data);
+    
 
     try {
       const response = await axios.post(
-        `http://localhost:1337/api/accommadations/?populate=*`,
+        url,
         {
           data: {
             name: data.name,
@@ -38,7 +44,11 @@ export default function CreateAcc() {
             wifi: data.wifi,
             text: data.text,
           },
-        }
+        }, {
+              headers: {
+                Authorization: `Bearer ${auth}`,
+              },
+            }
       );
       console.log("response", response.data);
       setUpdated(true);

@@ -4,6 +4,9 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../../../constants/api";
+
+const url = BASE_URL + "/api/accommadations?populate=*";
 
 export default function AccommodationList() {
   const [accommodations, setAccommodations] = useState([]);
@@ -14,7 +17,7 @@ export default function AccommodationList() {
     async function getAccommodations() {
       try {
         const response = await axios.get(
-          "http://localhost:1337/api/accommadations?populate=*"
+         url
         );
         console.log("response", response.data.data);
 
@@ -46,7 +49,7 @@ export default function AccommodationList() {
                     variant="top"
                     alt="Image"
                     src={
-                      "http://localhost:1337" +
+                      BASE_URL+
                       data.attributes.img.data.attributes.url
                     }
                   />

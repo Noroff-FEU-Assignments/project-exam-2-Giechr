@@ -4,21 +4,32 @@ import Ingress from "../../layout/Ingress";
 import { Container } from "react-bootstrap";
 import { ListGroup } from "react-bootstrap";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Row } from "react-bootstrap";
+import { BASE_URL } from "../../../constants/api";
+import AuthContext from "../../../context/AuthContext"
+
+const url = BASE_URL + `/api/accommadations`;
 
 export default function AdminAccommodations() {
   const [accommodations, setAccommodations] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+const [auth] = useContext(AuthContext);
+
   useEffect(function () {
     async function getAccommodations() {
       try {
-        const response = await axios.get(
-          `http://localhost:1337/api/accommadations`
-        );
+        const response = await axios.get(url,
+
+            {
+              headers: {
+                Authorization: `Bearer ${auth}`,
+              },
+            }
+          );
         console.log("response", response.data.data);
         setAccommodations(response.data.data);
       } catch (error) {
