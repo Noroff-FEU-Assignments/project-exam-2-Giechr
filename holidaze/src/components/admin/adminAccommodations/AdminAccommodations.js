@@ -22,14 +22,15 @@ const [auth] = useContext(AuthContext);
   useEffect(function () {
     async function getAccommodations() {
       try {
-        const response = await axios.get(url,
+        const response = await axios.get(
+          url,
 
-            {
-              headers: {
-                Authorization: `Bearer ${auth}`,
-              },
-            }
-          );
+          {
+            headers: {
+              Authorization: `Bearer ${auth}`,
+            },
+          }
+        );
         console.log("response", response.data.data);
         setAccommodations(response.data.data);
       } catch (error) {
@@ -41,7 +42,7 @@ const [auth] = useContext(AuthContext);
     }
 
     getAccommodations();
-
+    // eslint-disable-next-line
   }, []);
 
   if (loading) return <div>Loading ...</div>;

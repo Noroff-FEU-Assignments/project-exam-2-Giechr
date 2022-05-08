@@ -9,7 +9,7 @@ import FormError from "../common/FormError";
 import { BookingSchema } from "../validations/BookingValidation";
 import { BASE_URL } from "../../constants/api";
 
-const url = BASE_URL + `/api/bookings`;
+const url = BASE_URL + "/api/accommadations?populate=*";
 
 export default function OffcanvasContact() {
   const [submitting, setSubmitting] = useState(false);

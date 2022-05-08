@@ -78,6 +78,7 @@ export default function EditAcc() {
             rating: data.rating,
             wifi: data.wifi,
             text: data.text,
+            cardtext: data.cardtext,
           },
         },
         {
@@ -130,18 +131,7 @@ export default function EditAcc() {
           {error && <FormError>{error}</FormError>}
 
           <fieldset disabled={updatingPut}>
-            <Row className="justify-content-md-center text-center">
-              <div>
-                <img
-                  alt="img"
-                  width="300"
-                  height="300"
-                  src={
-                    BASE_URL + getresponse.attributes.img.data.attributes.url
-                  }
-                />
-              </div>
-            </Row>
+            <Row className="justify-content-md-center text-center"></Row>
             <div>
               <input
                 name="name"
@@ -213,6 +203,16 @@ export default function EditAcc() {
                 <option value="no">No</option>
               </select>
               {errors.wifi && <FormError>{errors.wifi.message}</FormError>}
+            </div>
+            <div>
+              <textarea
+                name="cardtext"
+                placeholder="Card info text"
+                ref={register}
+              />
+              {errors.cardtext && (
+                <FormError>{errors.cardtext.message}</FormError>
+              )}
             </div>
             <div>
               <textarea

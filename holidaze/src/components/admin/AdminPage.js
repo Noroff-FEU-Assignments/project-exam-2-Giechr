@@ -21,7 +21,7 @@ export default function AdminPage() {
             <ListGroup.Item
               action
               variant="light"
-              href="/admin/adminAccommadations"
+              href="/admin/adminAccommodations"
             >
               Add/Edit/Delete accommodations
             </ListGroup.Item>

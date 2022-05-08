@@ -5,7 +5,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../../../constants/api";
-
 const url = BASE_URL + "/api/accommadations?populate=*";
 
 export default function AccommodationList() {
@@ -31,6 +30,7 @@ export default function AccommodationList() {
     }
 
     getAccommodations();
+  
   }, []);
 
   if (loading) return <div>Loading accommodations...</div>;
@@ -47,15 +47,12 @@ export default function AccommodationList() {
                 <Card className="text-center card-body d-flex flex-column">
                   <Card.Img
                     variant="top"
-                    alt="Image"
-                    src={
-                      BASE_URL+
-                      data.attributes.img.data.attributes.url
-                    }
+                    alt={data.attributes.name}
+                    src={BASE_URL + data.attributes.img.data.attributes.url}
                   />
                   <Card.Body>
                     <Card.Title>{data.attributes.name}</Card.Title>
-                    <Card.Text>{data.attributes.text}</Card.Text>
+                    <Card.Text>{data.attributes.cardtext}</Card.Text>
                   </Card.Body>
 
                   <Link

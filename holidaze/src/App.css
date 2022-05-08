@@ -1,17 +1,23 @@
 * {
   box-sizing: border-box;
-  
 }
-body{
-background-color: #FFFDEF;
+body {
+  background-color: #fffdef;
 }
 
+h1 {
+  padding-top: 35px;
+}
+
+.col {
+  padding: 1rem;
+}
 
 /* FORM  */
 form {
   margin: 2rem auto;
   padding: 0rem;
- 
+
   border-radius: 1px;
   max-width: 500px;
 }
@@ -47,61 +53,55 @@ select {
   border-radius: 0.5em;
 }
 
-/* Other stuff  */
+/*  nav  */
 
 nav {
   padding: 15px;
-  background:#FFFDEF;
+  background: #fffdef;
   font-size: 24px;
   padding-right: 20px;
   border-bottom: 0.15rem solid rgba(0, 0, 0, 0.607);
-
 }
-
+/*  button  */
 
 button {
   font-size: 1.4rem;
   margin-top: 20px;
-   border-radius: 0.25em;
-   border-width: 0.10rem;
-   background: transparent;
-   padding-inline-start: 1rem;
-    padding-inline-end: 1rem;
-	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  border-radius: 0.25em;
+  border-width: 0.1rem;
+  background: transparent;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
-
-
 
 .arrow-button {
- 
   border-style: none;
- 
 }
-.footer{
-	background-color: #B09171;
-	margin-top: 50px;
+
+/*  card  */
+
+.card {
+  max-height: fit-content;
 }
 
 .card-title {
-	font-weight: bold;
-	font-size: 1.5rem;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
-.card-section{
-	padding-top: 2rem;
-	padding-bottom: 2rem;
-}
-
-.col {
-	padding: 1rem;
+.card-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-.card{
-	max-height: fit-content;
-}
-h1 {
-	padding-top: 35px;
+/*  footer  */
+
+.footer {
+  background-color: #b09171;
+  margin-top: 50px;
 }

@@ -7,15 +7,15 @@ import ContactPage from "./components/contact/ContactPage";
 import NavBar from "./components/layout/NavBar";
 import { AuthProv } from "./context/AuthContext";
 import "./App.css";
-import Accommadations from "./components/accommadations/Accommadations";
+import AccommodationsPage from "./components/accommadations/AccommodationsPage";
 import AccommadationDetails from "./components/accommadations/accommadationDetails/AccommadationDetails"
-import AdminAccommadations from "./components/admin/adminAccommadations/AdminAccommadations"
+import AdminAccommodations from "./components/admin/adminAccommodations/AdminAccommodations"
 import AdminBookings from "./components/admin/adminBookings/AdminBookings"
 import AdminMessages from "./components/admin/adminMessages/AdminMessages"
 import ReadUpdateDelete from "./components/admin/adminMessages/readUpdateDeleteMessage/ReadUpdateDeleteMessage"
 import ReadUpdateDeleteBooking from "./components/admin/adminBookings/readUpdateDeleteBooking/ReadUpdateDeleteBooking"
-import CrudAcc from "./components/admin/adminAccommadations/rudAcc/RudAcc"
-import CreateAcc from "./components/admin/adminAccommadations/createAcc/CreateAcc";
+import CrudAcc from "./components/admin/adminAccommodations/rudAcc/RudAcc"
+import CreateAcc from "./components/admin/adminAccommodations/createAcc/CreateAcc";
 
 
 function App() {
@@ -23,7 +23,6 @@ function App() {
     <AuthProv>
       <Router>
         <NavBar />
-      
 
         <div>
           <Switch>
@@ -36,8 +35,8 @@ function App() {
             <Route path="/admin" exact>
               <AdminPage />
             </Route>
-            <Route path="/admin/adminAccommadations" exact>
-              <AdminAccommadations />
+            <Route path="/admin/adminAccommodations" exact>
+              <AdminAccommodations />
             </Route>
             <Route path="/admin/adminAccommadations/createAcc">
               <CreateAcc />
@@ -60,8 +59,8 @@ function App() {
             <Route path="/contact">
               <ContactPage />
             </Route>
-            <Route path="/accommadations">
-              <Accommadations />
+            <Route path="/AccommodationsPage">
+              <AccommodationsPage />
             </Route>
             <Route path="/accomadations/accommadationDetails/:id">
               <AccommadationDetails />
