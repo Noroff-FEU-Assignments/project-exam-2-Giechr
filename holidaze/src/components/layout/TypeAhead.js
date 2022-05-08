@@ -45,11 +45,11 @@ export default function TypeAhead() {
             id="accommodations"
             labelKey="name"
             onChange={setSelections}
-            options={["dummy1", "dummy2", "dummy3", "dummy4"]}
+            options={["dummy something 1", "dummy something else 2", "dummy text 3", "dummy hotel 4"]}
             placeholder="This feature is not working (dummy data)..."
             selected={selections}
           />
-          <div>{selections}</div>
+          <div>"To-do", link selected results id to the details page for accommadations:  {selections}</div>
         </Form.Group>
       </Container>
     </>

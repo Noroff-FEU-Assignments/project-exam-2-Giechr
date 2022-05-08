@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Footer from "../layout/Footer";
-import BryggenH from "../../assets/img/cover.png";
-import BryggenV from "../../assets/img/cover.png";
+import BryggenMobile from "../../assets/img/cover_mobile.png";
+import Bryggen from "../../assets/img/cover.png";
 import TypeAhead from "../layout/TypeAhead";
 import InfoCards from "../layout/InfoCards";
 import Icons from "../../assets/icons/Icons";
@@ -11,8 +11,8 @@ export default function HomePage() {
     <>
       <Card>
         <Card.Img
-          src={BryggenH}
-          srcSet={`${BryggenV} 300w, ${BryggenH} 1000w`}
+          src={Bryggen}
+          srcSet={`${BryggenMobile} 300w, ${Bryggen} 1000w`}
           alt="Cover image"
         />
       </Card>
