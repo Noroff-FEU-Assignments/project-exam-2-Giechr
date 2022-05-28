@@ -1,7 +1,7 @@
 
 # project-exam-2
 
-![image](https://github.com/Giechr/Christoffergiertsen.com/blob/57865cf07713e11aec04c4871a7e810c64fbfb5d/img/Holidaze.png)
+![image](https://github.com/Giechr/Christoffergiertsen.com/blob/57865cf07713e11aec04c4871a7e810c64fbfb5d/img/holidaze.png)
 
 The assignment was to create a page for a fictional company called Holidaze.  
 
