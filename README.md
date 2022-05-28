@@ -1,6 +1,3 @@
-# Login details: 
-Username:test_123
-Password: test1234
 
 # project-exam-2
 
